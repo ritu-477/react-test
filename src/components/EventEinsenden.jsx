@@ -9,7 +9,7 @@ const EventEinsenden = () => {
         title: "",
         date: "",
         location: "",
-        price: "",
+        preis: "",
         details: "",
     });
     const [selectedImages, setSelectedImages] = useState([]);
@@ -181,7 +181,7 @@ const EventEinsenden = () => {
                                 type="text"
                                 name="preis"
                                 placeholder="Preis"
-                                value={formData.price}
+                                value={formData.preis}
                                 onChange={handleChange}
                             />
                         </div>
