@@ -23,6 +23,10 @@ module.exports = {
         'light-blue':"#D1E0E9",
       },
 
+      fontSize: {
+        'custom-xl':"28px"
+      },
+
       lineHeight: {
         'custom-2xl': "21px",
         'custom-3xl': "30px",
