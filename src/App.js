@@ -3,7 +3,7 @@ import './App.css';
 import EventEinsenden from './components/EventEinsenden';
 import AddNumbers from './components/AddNumbers';
 import MultipleTable from './components/MultipleTable';
-import Star from './components/Star';
+import Stars from './components/Stars';
 import BackToTop from './common/BackToTop';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <EventEinsenden />
       <AddNumbers />
       <MultipleTable />
-      <Star />
+      <Stars />
       <BackToTop/>
     </>
   );
