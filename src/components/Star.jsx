@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Heading from '../common/Heading';
 
@@ -12,7 +11,7 @@ const Star = () => {
         for (let i = 0; i < rows; i++) {
             let row = "";
             for (let j = 0; j < cols; j++) {
-                row += "*";
+                row += "* "; 
             }
             result.push(row.trim());
         }
@@ -29,7 +28,7 @@ const Star = () => {
                         <p key={index} className="text-2xl text-white">{row}</p>
                     ))}
                 </div>
-           </div>
+            </div>
         </div>
     );
 };
