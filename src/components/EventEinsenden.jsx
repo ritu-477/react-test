@@ -40,7 +40,7 @@ const EventEinsenden = () => {
         setSelectedImages([...selectedImages, ...newImages]);
     };
 
-    const triggerFileInput = () => {
+    const fileInput = () => {
         document.getElementById("imageInput").click();
     };
 
@@ -78,31 +78,13 @@ const EventEinsenden = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="flex items-center gap-4 p-[15.2px] bg-white rounded-[30px] border-[0.5px] border-dashed border-light-blue mt-5">
                             {selectedImages.map((image, index) => (
-                                <img
-                                    key={index}
-                                    className="sm:size-24 size-16 rounded-3xl overflow-hidden"
-                                    src={image}
-                                    alt={`Selected Image ${index + 1}`}
-                                />
+                                <img key={index} className="sm:size-24 size-16 rounded-3xl overflow-hidden" src={image} alt={`Selected Image ${index + 1}`} />
                             ))}
-                            <button
-                                type="button"
-                                onClick={triggerFileInput}
-                                className="sm:w-24 sm:h-20 h-14 w-16 rounded-[20px] flex items-center justify-center border-[0.5px] border-dashed border-gray-200 cursor-pointer hover:bg-gray-100"
-                            >
-                                <span className="text-2xl text-blue-500">
-                                    +
-                                </span>
+                            <button type="button" onClick={fileInput} className="sm:w-24 sm:h-20 h-14 w-16 rounded-[20px] flex items-center justify-center border-[0.5px] border-dashed border-gray-200 cursor-pointer hover:bg-gray-100">
+                                <span className="text-2xl text-blue-500">+</span>
                             </button>
                         </div>
-                        <input
-                            id="imageInput"
-                            type="file"
-                            accept="image/*"
-                            style={{ display: "none" }}
-                            onChange={handleImageChange}
-                            multiple
-                        />
+                        <input id="imageInput" type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageChange}multiple/>
                         <div
                             className="px-4 w-full border-light-blue border-[0.5px] flex justify-between items-center py-[16.7px] rounded-[30px] bg-white relative my-5"
                             ref={dropdownRef}>
