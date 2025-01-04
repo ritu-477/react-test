@@ -5,8 +5,8 @@ const Star = () => {
     const [name, setName] = useState([]);
 
     useEffect(() => {
-        const rows = 4;
-        const cols = 4;
+        const rows = 5;
+        const cols = 5;
         const result = [];
         for (let i = 0; i < rows; i++) {
             let row = "";
