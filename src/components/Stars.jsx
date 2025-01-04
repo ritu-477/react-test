@@ -15,7 +15,6 @@ const Star = () => {
             }
             result.push(row.trim());
         }
-
         setName(result);
     }, []);
 

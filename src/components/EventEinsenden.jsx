@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Swal from "sweetalert2"; 
 import Heading from "../common/Heading";
 import Description from "../common/Description";
 
@@ -29,7 +30,21 @@ const EventEinsenden = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        Swal.fire({
+            icon: "success",
+            title: "Event Submitted!",
+            text: "Your event has been successfully submitted.",
+        });
+
+        setFormData({
+            category: "",
+            title: "",
+            date: "",
+            location: "",
+            preis: "",
+            details: "",
+        });
+        setSelectedImages([]);
     };
 
     const handleImageChange = (event) => {
@@ -71,29 +86,48 @@ const EventEinsenden = () => {
                 <Description
                     classStyle={"text-center lg:pt-5 pt-4"}
                     text={
-                        "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+                        "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
                     }
                 />
                 <div className="md:max-w-[768px] mx-auto w-full">
                     <form onSubmit={handleSubmit}>
                         <div className="flex items-center gap-4 p-[15.2px] bg-white rounded-[30px] border-[0.5px] border-dashed border-light-blue mt-5">
                             {selectedImages.map((image, index) => (
-                                <img key={index} className="sm:size-24 size-16 rounded-3xl overflow-hidden" src={image} alt={`Selected Image ${index + 1}`} />
+                                <img
+                                    key={index}
+                                    className="sm:w-24 sm:h-20 h-14 w-16 rounded-3xl overflow-hidden"
+                                    src={image}
+                                    alt={`Selected Image ${index + 1}`}
+                                />
                             ))}
-                            <button type="button" onClick={fileInput} className="sm:w-24 sm:h-20 h-14 w-16 rounded-[20px] flex items-center justify-center border-[0.5px] border-dashed border-gray-200 cursor-pointer hover:bg-gray-100">
+                            <button
+                                type="button"
+                                onClick={fileInput}
+                                className="sm:w-24 sm:h-20 h-14 w-16 rounded-[20px] flex items-center justify-center border-[0.5px] border-dashed border-gray-200 cursor-pointer hover:bg-gray-100"
+                            >
                                 <span className="text-2xl text-blue-500">+</span>
                             </button>
                         </div>
-                        <input id="imageInput" type="file" accept="image/*" style={{ display: "none" }} onChange={handleImageChange}multiple/>
+                        <input
+                            id="imageInput"
+                            type="file"
+                            accept="image/*"
+                            style={{ display: "none" }}
+                            onChange={handleImageChange}
+                            multiple
+                        />
                         <div
-                            className="px-4 w-full border-light-blue border-[0.5px] flex justify-between items-center py-[16.7px] rounded-[30px] bg-white relative my-5"
-                            ref={dropdownRef}>
+                            className="relative px-4 w-full border-light-blue border-[0.5px] flex justify-between items-center py-[16.7px] rounded-[30px] bg-white my-5"
+                            ref={dropdownRef}
+                        >
                             <input
-                                required className="w-full outline-none text-sm font-bold leading-custom-2xl placeholder:text-gray" type="text"
+                                required
+                                className="w-full outline-none text-sm font-bold leading-custom-2xl placeholder:text-gray text-gray"
+                                type="text"
                                 name="category"
                                 placeholder="Kategorie"
                                 value={formData.category}
-                                onChange={handleChange}
+                                onClick={toggleDropdown}
                                 readOnly
                             />
                             <img
@@ -103,48 +137,30 @@ const EventEinsenden = () => {
                                 onClick={toggleDropdown}
                             />
                             {showDropdown && (
-                                <div className="absolute top-full right-0 mt-2 w-32 bg-white border border-light-blue rounded-lg shadow-md">
+                                <div
+                                    className="absolute top-full left-0 mt-2 w-full bg-white border border-light-blue rounded-lg shadow-md z-10"
+                                >
                                     <ul className="list-none p-2 text-gray">
-                                        <li
-                                            className="p-2 cursor-pointer text-gray text-sm leading-custom-2xl font-bold"
-                                            onClick={() => {
-                                                setFormData({
-                                                    ...formData,
-                                                    category: "Option-1",
-                                                });
-                                                setShowDropdown(false);
-                                            }}
-                                        >
-                                            Option-1
-                                        </li>
-                                        <li
-                                            className="p-2 cursor-pointer text-gray text-sm leading-custom-2xl font-bold"
-                                            onClick={() => {
-                                                setFormData({
-                                                    ...formData,
-                                                    category: "Option-2",
-                                                });
-                                                setShowDropdown(false);
-                                            }}
-                                        >
-                                            Option-2
-                                        </li>
-                                        <li
-                                            className="p-2 cursor-pointer text-gray text-sm leading-custom-2xl font-bold"
-                                            onClick={() => {
-                                                setFormData({
-                                                    ...formData,
-                                                    category: "Option-3",
-                                                });
-                                                setShowDropdown(false);
-                                            }}
-                                        >
-                                            Option-3
-                                        </li>
+                                        {["Option-1", "Option-2", "Option-3"].map((option) => (
+                                            <li
+                                                key={option}
+                                                className="p-2 cursor-pointer text-gray text-sm leading-custom-2xl font-bold hover:bg-gray-100"
+                                                onClick={() => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        category: option,
+                                                    });
+                                                    setShowDropdown(false);
+                                                }}
+                                            >
+                                                {option}
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             )}
                         </div>
+
                         <div className="flex gap-5 pb-5 max-md:flex-col">
                             <input
                                 required

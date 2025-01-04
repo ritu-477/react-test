@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import EventEinsenden from './components/EventEinsenden';
 import AddNumbers from './components/AddNumbers';
