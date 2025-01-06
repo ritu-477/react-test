@@ -30,6 +30,8 @@ const EventEinsenden = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Form Data Submitted:", formData);
+
         Swal.fire({
             icon: "success",
             title: "Event Submitted!",
@@ -202,6 +204,7 @@ const EventEinsenden = () => {
                             />
                         </div>
                         <textarea
+                            required
                             className="w-full pt-[49px] pb-[39.5px] max-sm:pt-10 max-sm:pb-5 placeholder:text-gray font-bold resize-none outline-none text-gray text-sm leading-custom-2xl border-light-blue border-[0.5px] rounded-[30px] bg-white px-4"
                             placeholder="Details zur Veranstaltung"
                             name="details"
